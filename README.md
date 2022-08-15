@@ -21,4 +21,7 @@ Enquanto isso, os arquivos de saída compilados serão gerados na pasta `bin` po
 A visão `JAVA PROJECTS` permite que você gerencie suas dependências. Mais detalhes podem ser encontrados [aqui](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
 
 ## mysql j connector
+
+Os conectores MySQL fornecem conectividade ao servidor MySQL para programas clientes. As APIs fornecem acesso de baixo nível aos recursos do MySQL usando o protocolo MySQL clássico ou o protocolo X.
+
 https://dev.mysql.com/downloads/connector/j/
