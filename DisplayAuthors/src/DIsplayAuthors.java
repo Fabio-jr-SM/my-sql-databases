@@ -1,56 +1,59 @@
+
 import java.sql.Connection;
+import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class DIsplayAuthors {
+public class DisplayAuthors {
 
-    static final String DATABESE_URL = "jdbc:mysql:://localhost/books";
-    public static void main(String[] args) {
-        
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+    static final String DATABASE_URL = "jdbc:mysql://localhost/books";
 
-        try{
-            connection = DriverManager.getConnection(DATABESE_URL, "deitel ", "ifmt@123");
+    public static void main(String args[]) {
+        Connection connection = null; // gerencia a conexão
+        Statement statement = null; // instrução de consulta
+        ResultSet resultSet = null; // gerencia resultados
+
+        try {
+            
+            connection = DriverManager.getConnection(
+                    DATABASE_URL, "root", "ifmt@123");
 
             statement = connection.createStatement();
 
-            resultSet = statement.executeQuery("SELECT AuthorID, FirstName, LastName, FROM Authors");
+            resultSet = statement.executeQuery(
+                    "SELECT AuthorID, FirstName, LastName FROM Authors");
 
+            
             ResultSetMetaData metaData = resultSet.getMetaData();
-            int numberOfcolumns = metaData.getColumnCount();
-            System.out.println("Authors Table of Books Database\n");
-
-            for(int i = 1; i <= numberOfcolumns; i++){
-                System.out.printf("%-8st", metaData.getColumnName(i));
-                System.out.println();
-
-                while (resultSet.next()) {
-                    for(int j = 1; j <= numberOfcolumns; j++){
-                        System.out.printf("%-8st", resultSet.getObject(j));
-                        System.out.println();
-                    }
-                }
+            int numberOfColumns = metaData.getColumnCount();
+            System.out.println("Authors Table of Books Database:\n");
+            for (int i = 1; i <= numberOfColumns; i++) {
+                System.out.printf("%-8s\t", metaData.getColumnName(i));
             }
-        }
+            System.out.println();
 
-        catch(SQLException sqlException){
+            while (resultSet.next()) {
+                for (int i = 1; i <= numberOfColumns; i++) {
+                    System.out.printf("%-8s\t", resultSet.getObject(i));
+                }
+                System.out.println();
+            } // fim do while
+        } // fim do try
+        catch (SQLException sqlException) {
             sqlException.printStackTrace();
-        }
-
-        finally{
-            try{
+        } // fim do catch
+        finally // assegura que o resultSet, a instrução e a conexão estão fechados
+        {
+            try {
                 resultSet.close();
                 statement.close();
                 connection.close();
-            }
-            catch(Exception exception){
+            } // fim do try
+            catch (Exception exception) {
                 exception.printStackTrace();
-            }
-        }
-    }
+            } // fim do catch
+        } // fim de finally
+    } // fim de main
 }
