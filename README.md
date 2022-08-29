@@ -25,3 +25,7 @@ A visão `JAVA PROJECTS` permite que você gerencie suas dependências. Mais det
 Os conectores MySQL fornecem conectividade ao servidor MySQL para programas clientes. As APIs fornecem acesso de baixo nível aos recursos do MySQL usando o protocolo MySQL clássico ou o protocolo X.
 
 https://dev.mysql.com/downloads/connector/j/
+
+# Conteúdo para prova 3° Bimestre
+
+## ACESSANDO BANCOS DE DADOS COM O JDBC  - Capítulo 28 - Página 898 do Deitel
