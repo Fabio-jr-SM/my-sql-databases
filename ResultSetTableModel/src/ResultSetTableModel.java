@@ -16,6 +16,8 @@ public class ResultSetTableModel extends AbstractTableModel {
     private int numberOfRows;
     private boolean connectedToDatabase = false;
 
+
+    //public ResultSetTableModel
     public ResultSetTableModel(String url, String username,
             String password, String query) throws SQLException {
 
@@ -30,8 +32,10 @@ public class ResultSetTableModel extends AbstractTableModel {
         setQuery(query);
     }
 
+
+    //public Class getColumnClass
     public Class getColumnClass(int column) throws IllegalStateException {
-        
+
         if (!connectedToDatabase)
             throw new IllegalStateException("Not Connected to Database");
 
@@ -48,6 +52,9 @@ public class ResultSetTableModel extends AbstractTableModel {
         return Object.class; 
     }
 
+
+
+    //public int getColumnCount
     public int getColumnCount() throws IllegalStateException {
      
         if (!connectedToDatabase)
@@ -63,6 +70,11 @@ public class ResultSetTableModel extends AbstractTableModel {
         return 0;
     } 
 
+
+
+
+    //public String getColumnName
+    //Pega o nome da Coluna
     public String getColumnName(int column) throws IllegalStateException {
         
         if (!connectedToDatabase) {
@@ -80,6 +92,11 @@ public class ResultSetTableModel extends AbstractTableModel {
         
     }
 
+
+
+
+    //public int getRowCount
+    //Identifica o numero de linhas
     public int getRowCount() throws IllegalStateException {
         
         if (!connectedToDatabase) {
@@ -89,6 +106,10 @@ public class ResultSetTableModel extends AbstractTableModel {
         return numberOfRows;
     }
 
+
+
+    //public Object
+    //Obter valor na linha e coluna
     public Object getValueAt(int row, int column)
             throws IllegalStateException {
        
@@ -108,6 +129,10 @@ public class ResultSetTableModel extends AbstractTableModel {
         return ""; 
     } 
 
+
+
+
+    //public void setQuery
     public void setQuery(String query)
             throws SQLException, IllegalStateException {
        
@@ -126,6 +151,10 @@ public class ResultSetTableModel extends AbstractTableModel {
         fireTableStructureChanged();
     }
 
+
+
+
+    //public void disconnectFromDatabase
     public void disconnectFromDatabase() {
         if (connectedToDatabase) {
             
@@ -143,4 +172,6 @@ public class ResultSetTableModel extends AbstractTableModel {
             } 
         } 
     } 
+
+
 }
