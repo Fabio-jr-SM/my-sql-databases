@@ -8,6 +8,9 @@ import java.sql.SQLException;
 
 public class DisplayAuthors {
 
+    /*Declara uma constante de String para URL de banco de dados. Isso identifica o 
+    nome do BD ao qual se conectar, bem como informações sobre o protocolo utilizado pelo driver JDBC*/
+    
     static final String DATABASE_URL = "jdbc:mysql://localhost/books";
 
     public static void main(String args[]) {
@@ -17,11 +20,30 @@ public class DisplayAuthors {
 
         try {
             
+            /*Cria um obj Connection referenciado por connection.
+            Os Objetos Connection permitem ao programas criar instruções de SQL que acessem o Banco de dados*/
+            
+            /*o metodo getConnection da classe DriverManager que tenta conectar ao banco de dados especificado 
+            na URL da linha 14*/
+            
+            /*O método getConnection aceita 3 argumentos: 
+            1. uma STRING que especifica o URL do banco de dados;
+            2. O nome de usuario do banco de dados MySql; e
+            3. A senha do banco de dados MySql*/
+            
+            /*Caso o driveManager não se conectar ao banco de dados o metodo getConnection lança uma SQLException*/
+            
             connection = DriverManager.getConnection(
-                    DATABASE_URL, "root", "ifmt@123");
+                    DATABASE_URL, "root", "ifmt@123"); //permitir ao programas criar instruções de SQL que acessem o Banco de dados
 
-            statement = connection.createStatement();
+            /*Nessa linha o invoca o metodo Connection createStatement para obter um objeto que implementara 
+            interface Statement que utiliza o objeto Statement para enviar instruções de SQL ao BD*/
+            
+            statement = connection.createStatement(); // enviar instruções de SQL ao BD
 
+            /*o metodo executeQuery do objeto Statement cria uma consulta que seleciona todas as informações de autor da tabela Authors
+            Esse metodo retorna um objeto que implementa a interface ResultSet (permite que o programa manipule o resultado da consulta)
+            e contem os resultados da consulta*/
             resultSet = statement.executeQuery(
                     "SELECT AuthorID, FirstName, LastName FROM Authors");
 
